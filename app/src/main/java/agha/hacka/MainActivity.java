@@ -7,6 +7,8 @@ public class MainActivity extends AppCompatActivity {
     // rami
     String rami = "fasdfa";
 
+    String master = "master";
+
     String hello = "fadsjlkfsa";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
