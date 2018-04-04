@@ -6,6 +6,8 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
     // rami
     String rami = "fasdfa";
+
+    String hello = "fadsjlkfsa";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
