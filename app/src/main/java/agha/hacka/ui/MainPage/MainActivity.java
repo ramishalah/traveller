@@ -1,5 +1,6 @@
 package agha.hacka.ui.MainPage;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import agha.hacka.R;
 import agha.hacka.pogo.FacultyResponse;
+import agha.hacka.ui.Map.MapsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,7 +37,12 @@ public class MainActivity extends AppCompatActivity implements MainPageView{
 
     @Override
     public void onSuccess(List<FacultyResponse> facultyResponse) {
-        // here we do something
+        Intent intent = new Intent(this, MapsActivity.class);
+        // Adding the latitude
+        intent.putExtra("LAT", 24.696705);
+
+        intent.putExtra("LNG", 46.767783);
+        startActivity(intent);
     }
 
     @Override
