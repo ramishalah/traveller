@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 // look at the gradle file and look at the manifest for the permission
 // Also, look at how the mvp works exactly
 
-
+//hello
 // In this interface you add the requests
 public interface Api {
 
