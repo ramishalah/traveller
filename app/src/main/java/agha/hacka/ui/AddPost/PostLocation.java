@@ -1,12 +1,12 @@
-package agha.hacka.ui.Map;
+package agha.hacka.ui.AddPost;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,22 +14,23 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import agha.hacka.R;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
+public class PostLocation extends FragmentActivity implements OnMapReadyCallback{
+    private static final String TAG = "PostLocation";
 
     private GoogleMap mMap;
+    private LatLng locationSpecified;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_post_location);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.postMap);
         mapFragment.getMapAsync(this);
     }
 
@@ -47,12 +48,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Getting the latitude and longitude passed
-        double lat = getIntent().getExtras().getDouble("LAT");
-        double lng = getIntent().getExtras().getDouble("LNG");
-
-        // Enabling the zoom in and out
-        mMap.getUiSettings().setZoomControlsEnabled(true);
 
 
         // Checking for the permission granted or not
@@ -64,16 +59,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-        mMap.getUiSettings().setCompassEnabled(true);
 
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(lat, lng);
-        // TODO: 4/6/18 adding the title to the marker
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        LatLng sydney = new LatLng(24, 46);
         float zoomLevel = 16.0f; //This goes up to 21
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+
+//        // Add a marker in Sydney and move the camera
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
+        // Adding the marker to the clicked location.
+        mMap.setOnMapClickListener(latLng -> {
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+
+            // Getting tha latitude and the longitude.
+            locationSpecified = markerOptions.getPosition();
+
+            mMap.clear();
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.addMarker(markerOptions);
+        });
     }
+
+//    @Override
+//    public void onMapClick(LatLng latLng) {
+//        Log.d(TAG, "onMapClick: I'm clicking on the map");
+//        // Adding the marker to the location specified
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude)));
+//
+//
+//    }
 
 
 }

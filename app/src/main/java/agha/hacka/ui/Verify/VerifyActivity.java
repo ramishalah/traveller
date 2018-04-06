@@ -34,9 +34,7 @@ public class VerifyActivity extends AppCompatActivity implements VerifyView{
         // init presenter
         presenter = new VerifyPresenter(this,this);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { fabClicked(); }});
+        fab.setOnClickListener(view -> fabClicked());
     }
 
     @Override

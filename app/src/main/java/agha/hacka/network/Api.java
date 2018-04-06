@@ -6,11 +6,14 @@ import agha.hacka.pogo.FacultyResponse;
 import agha.hacka.ui.Login.LoginPOJO.LoginPojo;
 import agha.hacka.ui.Verify.VerifyPOJO.VerifyPojo;
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 
 // look at the gradle file and look at the manifest for the permission
@@ -31,4 +34,8 @@ public interface Api {
     @POST("/api/v1/auth")
     @FormUrlEncoded
     Observable<VerifyPojo> insertCode(@Field("mobile") String number , @Field("code") String code);
+
+    @Multipart
+    @POST("uploadAttachment")
+    Observable<Void> uploadAttachment(@Part MultipartBody.Part filePart);
 }
