@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements MainPageView{
     @Override
     public void onSuccess(List<FacultyResponse> facultyResponse) {
         Intent intent = new Intent(this, MapsActivity.class);
+        // Adding the latitude
+        intent.putExtra("LAT", 24.696705);
+
+        intent.putExtra("LNG", 46.767783);
         startActivity(intent);
     }
 
