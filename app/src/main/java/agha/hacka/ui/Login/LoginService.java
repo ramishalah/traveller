@@ -1,9 +1,12 @@
-package agha.hacka.network;
+package agha.hacka.ui.Login;
+
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
+import agha.hacka.network.Api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitServiceFactory {
+public class LoginService {
     // Base URL
     String ENDPOINT = "https://elmhackhub.com";
 
@@ -21,3 +24,4 @@ public class RetrofitServiceFactory {
                 .build();
     }
 }
+

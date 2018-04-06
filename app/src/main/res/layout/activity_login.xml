@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.Login.LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/bg_small"
+        android:scaleType="fitXY"
+        android:id="@+id/image"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/background_rounded"
+        android:elevation="15dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/smartphone"
+            android:id="@+id/phone"
+            android:layout_marginTop="70dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/enter_phone"
+            android:text="Enter Your Phone Number"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/phone"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/dark"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/phone_number_border"
+            android:text="+966532772066"
+            android:id="@+id/phone_number"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/enter_phone"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:backgroundTint="@color/green"
+            android:id="@+id/fab"
+            android:layout_below="@id/phone_number"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_next_arrow"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
