@@ -4,12 +4,12 @@ import android.content.Context;
 
 public class VerifyPresenter {
 
-    private Context context ;
+    //private Context context ;
     private VerifyView mView ;
     private VerifyModel mModel ;
 
     public VerifyPresenter(Context context , VerifyView mView){
-        this.context = context;
+        //this.context = context;
         this.mView = mView;
         mModel = new VerifyModel();
     }

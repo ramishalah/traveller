@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">hacka</string>
     <string name="title_activity_maps">Map</string>
+
+    <item type="id" name="description" />
 </resources>
