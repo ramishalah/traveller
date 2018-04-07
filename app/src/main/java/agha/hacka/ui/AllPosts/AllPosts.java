@@ -26,6 +26,7 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import java.util.ArrayList;
 
 import agha.hacka.R;
+import agha.hacka.ui.AddPost.AddPost;
 import agha.hacka.ui.AllPosts.AllPostsPOJO.PostPojo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,8 +73,8 @@ public class AllPosts extends AppCompatActivity implements AllPostsView{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(this,AddPost.class);
-//                startActivity(i);
+                Intent i = new Intent(AllPosts.this,AddPost.class);
+                startActivity(i);
             }
         });
     }
