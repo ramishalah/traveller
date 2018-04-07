@@ -275,8 +275,6 @@ public class PostLocation extends FragmentActivity implements OnMapReadyCallback
         }
 
         mAddPostPresenter.putImage(token, postId, filePart);
-
-
     }
 
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
