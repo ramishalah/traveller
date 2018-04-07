@@ -23,6 +23,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.MainPage.MainActivity"></activity>
         <activity android:name=".ui.Login.LoginActivity"></activity>
+        <activity android:name=".ui.AddPost.PostLocation"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

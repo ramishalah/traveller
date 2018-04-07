@@ -78,12 +78,12 @@ public class PostLocation extends FragmentActivity implements OnMapReadyCallback
 
                 // We initialize the request body
                 String description = getIntent().getExtras().getString("DESCRIPTION");
+                String title = getIntent().getExtras().getString("TITLE");
 
                 double lat = locationSpecified.latitude;
                 double lng = locationSpecified.longitude;
 
                 String metaDataKey = "ramiagha";
-                String title = "helloWorld";
                 String choice = "res";
 
 
@@ -244,15 +244,26 @@ public class PostLocation extends FragmentActivity implements OnMapReadyCallback
         String postId = addPostResponse.getPostId();
         // Getting the bitmap from the extras
 //        Bitmap bitmap = extractBitmap(getIntent().getByteArrayExtra("TAKEN_IMAGE"));
+
+        // This is for the image taken from the camera
         byte [] arr = getIntent().getByteArrayExtra("TAKEN_IMAGE");
         File imageTaken = null;
 
         if(arr != null) {
             imageTaken = convertBytetoFile(arr);
         }
+
+
+
         Log.d(TAG, "onSuccess: The URI extracted is: " + getIntent().getExtras().getString("SELECTED_IMAGE_URI"));
 
-        Uri uri = Uri.parse(getIntent().getExtras().getString("SELECTED_IMAGE_URI")) ;
+        // This is for the image selected from the gallary
+        String uriString = getIntent().getExtras().getString("SELECTED_IMAGE_URI");
+        Uri uri = null;
+        if(uriString != null) {
+            uri = Uri.parse(uriString) ;
+        }
+
         File imageSelected = null;
         if(uri != null) {
             try{

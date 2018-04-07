@@ -2,7 +2,9 @@ package agha.hacka.ui.AddPost;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileDescriptor;
+import java.io.IOException;
 
 import agha.hacka.R;
 import butterknife.BindView;
@@ -20,23 +24,26 @@ import butterknife.ButterKnife;
 public class AddPost extends AppCompatActivity {
     private static final String TAG = "AddPost";
 
-    @BindView(R.id.coverImage)
+    @BindView(R.id.post_image)
     ImageView coverImage;
 
-    @BindView(R.id.descriptionText)
+    @BindView(R.id.post_description)
     TextView description;
 
-    @BindView(R.id.uploadImage)
-    ImageButton uploadImage;
+    @BindView(R.id.gallery)
+    Button uploadImage;
 
-    @BindView(R.id.takeImage)
-    ImageButton takeImage;
+    @BindView(R.id.camera)
+    Button takeImage;
 
-    @BindView(R.id.post)
+    @BindView(R.id.location)
     Button postButton;
 
-    @BindView(R.id.locationButton)
-    ImageButton locationButton;
+    @BindView(R.id.post_title)
+    TextView title;
+
+//    @BindView(R.id.location)
+//    ImageButton locationButton;
 
     private double lat;
     private double lng;
@@ -67,11 +74,6 @@ public class AddPost extends AppCompatActivity {
             startActivityForResult(cameraIntent, 0);
         });
 
-//        locationButton.setOnClickListener(view -> {
-//
-//            Intent intent = new Intent(this, PostLocation.class);
-//            startActivity(intent);
-//        });
 
         postButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, PostLocation.class);
@@ -88,6 +90,9 @@ public class AddPost extends AppCompatActivity {
 
             // Adding the description
             intent.putExtra("DESCRIPTION", description.getText().toString());
+
+            // Adding the title
+            intent.putExtra("TITLE", title.getText().toString());
 
             startActivity(intent);
         });
@@ -109,6 +114,14 @@ public class AddPost extends AppCompatActivity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     selectedImage = imageReturnedIntent.getData();
+                    Bitmap bitMapPhoto = null;
+                    try{
+                        bitMapPhoto = getBitmapFromUri(imageReturnedIntent.getData());
+                    } catch (IOException e) {
+                        Log.d(TAG, "onActivityResult: Error in converting the uri to bitmap");
+                    }
+
+                    coverImage.setImageBitmap(bitMapPhoto);
                     Log.d(TAG, "onActivityResult: The selectedImage URI: " + selectedImage);
 //                    imageview.setImageURI(selectedImage);
                 }
@@ -118,6 +131,15 @@ public class AddPost extends AppCompatActivity {
 //                lng = getIntent().getExtras().getDouble("LNG_LOCATION");
 
         }
+    }
+
+    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
+        ParcelFileDescriptor parcelFileDescriptor =
+                getContentResolver().openFileDescriptor(uri, "r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        parcelFileDescriptor.close();
+        return image;
     }
 
 //    private Bitmap convertImageViewToBitmap(ImageView v) {
