@@ -38,4 +38,5 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.koushikdutta.ion:ion:2.+'
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 }

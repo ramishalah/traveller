@@ -3,4 +3,10 @@
     <string name="title_activity_maps">Map</string>
 
     <item type="id" name="description" />
+
+    <array name="spinner">
+        <item name="Default"></item>
+        <item name="Restaurant">res</item>
+        <item name="Park">park</item>
+    </array>
 </resources>

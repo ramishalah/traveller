@@ -65,6 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView date ;
         TextView title;
         Intent i ;
+        ImageView location ;
 
         /* constructor */
         public ViewHolder(View itemView) {
@@ -73,6 +74,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             image = (ImageView) itemView.findViewById(R.id.image);
             date = (TextView) itemView.findViewById(R.id.date);
             title = (TextView) itemView.findViewById(R.id.content);
+            location = (ImageView) itemView.findViewById(R.id.location);
+
             i = new Intent(context, DisplayPost.class);
 
             /* click listener on elements */
@@ -85,6 +88,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     i.putExtra("description",list.get((int)title.getTag()).getDescription().toString());
                     put();
                     context.startActivity(i);
+                }
+            });
+            // location
+            location.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e("location","clicked");
                 }
             });
 

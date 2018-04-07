@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/post_title"
+        android:background="@drawable/phone_number_border"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:hint="Title"
+        android:textColorHint="@color/dark"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/post_title"
+        android:padding="5dp"
+        android:id="@+id/rl_desc"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/phone_number_border">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:hint="Description"
+            android:textColorHint="@color/dark"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_height="150dp"
+            android:id="@+id/post_description"
+            app:background="@drawable/phone_number_border"
+            app:met_maxCharacters="500"
+            app:met_hideUnderline="true"
+            android:gravity="left"
+            app:met_textColorHint="@color/dark"
+            android:textStyle="bold"
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/rl_desc"
+        android:background="@drawable/image_border"
+        android:src="@drawable/ic_photo"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/buttons"
+        android:layout_below="@id/post_image">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/camera"
+            android:text="Camera"
+            android:drawableLeft="@drawable/ic_camera"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/gallery"
+            android:text="gallery"
+            android:drawableLeft="@drawable/ic_gallery"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/ll_location"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Location"
+            android:id="@+id/location"
+            android:drawableLeft="@drawable/ic_drop"
+            />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
