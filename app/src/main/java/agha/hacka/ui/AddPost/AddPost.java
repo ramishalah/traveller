@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+
 import agha.hacka.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +38,13 @@ public class AddPost extends AppCompatActivity {
     @BindView(R.id.locationButton)
     ImageButton locationButton;
 
+    private double lat;
+    private double lng;
+
+    private Uri selectedImage;
+    private Bitmap photo;
+//    private Intent locationIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +67,28 @@ public class AddPost extends AppCompatActivity {
             startActivityForResult(cameraIntent, 0);
         });
 
-        locationButton.setOnClickListener(view -> {
+//        locationButton.setOnClickListener(view -> {
+//
+//            Intent intent = new Intent(this, PostLocation.class);
+//            startActivity(intent);
+//        });
 
+        postButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, PostLocation.class);
+            if(selectedImage != null) {
+                intent.putExtra("SELECTED_IMAGE_URI", selectedImage.toString());
+            }
+
+            if(photo != null) {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                intent.putExtra("TAKEN_IMAGE", byteArray);
+            }
+
+            // Adding the description
+            intent.putExtra("DESCRIPTION", description.getText().toString());
+
             startActivity(intent);
         });
 
@@ -71,20 +99,38 @@ public class AddPost extends AppCompatActivity {
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
-                    Bitmap photo = (Bitmap) imageReturnedIntent.getExtras().get("data");
+                    photo = (Bitmap) imageReturnedIntent.getExtras().get("data");
                     coverImage.setImageBitmap(photo);
                     Log.d(TAG, "onActivityResult: the image is: " + photo);
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    Log.d(TAG, "onActivityResult: The takenImage URI: " + selectedImage);
+//                    Uri selectedImage = imageReturnedIntent.getData();
+//                    Log.d(TAG, "onActivityResult: The takenImage URI: " + selectedImage);
                 }
                 break;
             case 1:
                 if (resultCode == RESULT_OK) {
-                    Uri selectedImage = imageReturnedIntent.getData();
+                    selectedImage = imageReturnedIntent.getData();
                     Log.d(TAG, "onActivityResult: The selectedImage URI: " + selectedImage);
 //                    imageview.setImageURI(selectedImage);
                 }
                 break;
+//            case 2:
+//                lat = getIntent().getExtras().getDouble("LAT_LOCATION");
+//                lng = getIntent().getExtras().getDouble("LNG_LOCATION");
+
         }
     }
+
+//    private Bitmap convertImageViewToBitmap(ImageView v) {
+//        Bitmap bm = Ion.with(v).getBitmap();
+//        return bm;
+//    }
+//
+//    private void put() {
+//        // put bitmap
+//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//        convertImageViewToBitmap(image).compress(Bitmap.CompressFormat.JPEG, 50, stream);
+//        byte[] byteArray = stream.toByteArray();
+//        locationIntent.putExtra("image", byteArray);
+//    }
+
 }
