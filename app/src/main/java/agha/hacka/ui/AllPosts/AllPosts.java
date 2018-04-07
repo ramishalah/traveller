@@ -46,10 +46,6 @@ public class AllPosts extends AppCompatActivity implements AllPostsView {
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    @BindView(R.id.userProfile)
-    FloatingActionButton userProfileButton;
-
-
     private RecyclerViewAdapter adapter;
     private AllPostsPresenter presenter;
     private Spinner spinner;
@@ -81,10 +77,6 @@ public class AllPosts extends AppCompatActivity implements AllPostsView {
             startActivity(i);
         });
 
-        userProfileButton.setOnClickListener(view -> {
-            Intent intent = new Intent(AllPosts.this, UserProfile.class);
-            startActivity(intent);
-        });
     }
 
     @Override
@@ -112,18 +104,6 @@ public class AllPosts extends AppCompatActivity implements AllPostsView {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.spinner, menu);
 
-//        MenuItem item = menu.findItem(R.id.spinner);
-//        MaterialSpinner spinner = (MaterialSpinner) MenuItemCompat.getActionView(item);
-//        spinner.setItems("Default","Restaurant","Park");
-//        spinner.setBackgroundColor(getResources().getColor(R.color.grey));
-//        spinner.setTextColor(getResources().getColor(R.color.dark));
-//        spinner.setArrowColor(getResources().getColor(R.color.green));
-//        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-//
-//            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-//                presenter.filter(item);
-//            }
-//        });
 
 
         return true;
@@ -142,7 +122,8 @@ public class AllPosts extends AppCompatActivity implements AllPostsView {
 
         switch (id){
             case R.id.profile :
-                Toast.makeText(this,"Profile",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AllPosts.this, UserProfile.class);
+                startActivity(intent);
                 break;
             case R.id.defualt :
                 presenter.filter("Default");

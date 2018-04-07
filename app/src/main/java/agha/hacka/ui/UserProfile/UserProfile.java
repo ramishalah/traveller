@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import agha.hacka.R;
+import agha.hacka.ui.AllPosts.AllPosts;
 import agha.hacka.ui.Verify.VerifyPOJO.UserProfileResponse;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,26 +46,26 @@ public class UserProfile extends AppCompatActivity implements UserProfileView {
     Bitmap bitMapPhoto = null;
 
     // Binding the views
-    @BindView(R.id.userPhoto)
+    @BindView(R.id.profile)
     ImageView userPhoto;
 
-    @BindView(R.id.fullNameText)
+    @BindView(R.id.name)
     EditText fullNameText;
 
-    @BindView(R.id.emailText)
+    @BindView(R.id.email)
     EditText emailText;
 
-    @BindView(R.id.updateButton)
+    @BindView(R.id.submit)
     Button updateButton;
 
-    @BindView(R.id.uploadImageButton)
-    Button uploadImageButton;
+    @BindView(R.id.gallery)
+    FloatingActionButton uploadImageButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.update_profile);
         ButterKnife.bind(this);
 
         userProfilePresenter = new UserProfilePresenter(this);
@@ -193,7 +195,8 @@ public class UserProfile extends AppCompatActivity implements UserProfileView {
 
     @Override
     public void onSuccess(UserProfileResponse userProfileResponse) {
-
+        Intent i = new Intent(this, AllPosts.class);
+        startActivity(i);
     }
 
     @Override

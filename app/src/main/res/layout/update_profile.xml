@@ -26,12 +26,13 @@
         android:layout_height="40dp"
         android:background="@color/green"
         android:src="@drawable/ic_camera"
+        android:scaleType="fitXY"
         android:layout_below="@id/profile"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         />
     
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
@@ -43,7 +44,7 @@
         android:layout_marginRight="20dp"
         />
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
@@ -56,6 +57,7 @@
         />
 
     <Button
+        android:id="@+id/submit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginRight="20dp"
