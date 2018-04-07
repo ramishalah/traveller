@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
+
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
@@ -42,6 +46,12 @@ public class AddPost extends AppCompatActivity {
     @BindView(R.id.post_title)
     TextView title;
 
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar toolbar;
+
+    @BindView(R.id.spinner)
+    MaterialSpinner spinner;
+
 //    @BindView(R.id.location)
 //    ImageButton locationButton;
 
@@ -51,6 +61,7 @@ public class AddPost extends AppCompatActivity {
     private Uri selectedImage;
     private Bitmap photo;
 //    private Intent locationIntent;
+    private String itemText = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +69,19 @@ public class AddPost extends AppCompatActivity {
         setContentView(R.layout.activity_add_post);
         ButterKnife.bind(this);
 
+        // Setting the title of the tool bar
+        toolbar.setTitle("Add Post");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
+        // Setting the items of the spinner
+        spinner.setItems("Default", "Park", "Restaurant");
+        spinner.setOnItemSelectedListener((MaterialSpinner.OnItemSelectedListener<String>) (view, position, id, item) ->
+                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show());
+
+        // Adding a listener
+        spinner.setOnItemSelectedListener((view, position, id, item) -> {
+            itemText = (String)item;
+        });
 
         // Assigning the listeners
         uploadImage.setOnClickListener(view -> {
@@ -87,13 +111,23 @@ public class AddPost extends AppCompatActivity {
                 byte[] byteArray = stream.toByteArray();
                 intent.putExtra("TAKEN_IMAGE", byteArray);
             }
+            String descriptionText = description.getText().toString();
 
-            // Adding the description
-            intent.putExtra("DESCRIPTION", description.getText().toString());
+            if(descriptionText != null) {
+                // Adding the description
+                intent.putExtra("DESCRIPTION", description.getText().toString());
+            }
 
-            // Adding the title
-            intent.putExtra("TITLE", title.getText().toString());
 
+            String titleText = title.getText().toString();
+            if(titleText != null) {
+                // Adding the title
+                intent.putExtra("TITLE",titleText);
+            }
+
+            if(itemText != null) {
+                intent.putExtra("CHOICE", itemText);
+            }
             startActivity(intent);
         });
 

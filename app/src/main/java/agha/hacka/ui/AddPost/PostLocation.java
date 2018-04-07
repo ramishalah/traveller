@@ -84,7 +84,7 @@ public class PostLocation extends FragmentActivity implements OnMapReadyCallback
                 double lng = locationSpecified.longitude;
 
                 String metaDataKey = "ramiagha";
-                String choice = "res";
+                String choice = getIntent().getExtras().getString("CHOICE");
 
 
 
