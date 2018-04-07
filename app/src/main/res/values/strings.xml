@@ -9,4 +9,5 @@
         <item name="res">Resturant</item>
         <item name="park">Park</item>
     </array>
+    <string name="title_activity_post_location">Map</string>
 </resources>

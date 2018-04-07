@@ -4,14 +4,23 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/dark"
+        android:id="@+id/toolbar"/>
 
     <EditText
+
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:id="@+id/post_title"
         android:background="@drawable/phone_number_border"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:hint="Title"
@@ -27,7 +36,9 @@
         android:padding="5dp"
         android:id="@+id/rl_desc"
         android:layout_marginTop="10dp"
-        android:background="@drawable/phone_number_border">
+        android:background="@drawable/phone_number_border"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
@@ -35,7 +46,7 @@
             android:textColorHint="@color/dark"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:layout_height="150dp"
+            android:layout_height="170dp"
             android:id="@+id/post_description"
             app:background="@drawable/phone_number_border"
             app:met_maxCharacters="500"
@@ -53,6 +64,8 @@
         android:layout_height="120dp"
         android:layout_marginTop="10dp"
         android:layout_below="@id/rl_desc"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/image_border"
         android:src="@drawable/ic_photo"/>
 
@@ -70,6 +83,7 @@
             android:id="@+id/camera"
             android:text="Camera"
             android:drawableLeft="@drawable/ic_camera"
+            android:layout_marginLeft="10dp"
             />
 
         <Button
@@ -78,9 +92,19 @@
             android:layout_weight="1"
             android:id="@+id/gallery"
             android:text="gallery"
-            android:drawableLeft="@drawable/ic_gallery"/>
+            android:drawableLeft="@drawable/ic_gallery"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
+
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:id="@+id/spinner"
+        android:layout_below="@id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:ms_background_color="@color/grey"
+        app:ms_text_color="@color/dark"/>
 
     <LinearLayout
         android:layout_width="match_parent"
