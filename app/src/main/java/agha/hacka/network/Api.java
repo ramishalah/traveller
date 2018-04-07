@@ -3,7 +3,6 @@ package agha.hacka.network;
 import java.util.ArrayList;
 import java.util.List;
 
-import agha.hacka.pogo.FacultyResponse;
 import agha.hacka.ui.AddPost.AddPostPojo.AddPostRequest;
 import agha.hacka.ui.AddPost.AddPostPojo.AddPostResponse;
 import agha.hacka.ui.AddPost.AddPostPojo.PutImageResponse;
@@ -43,7 +42,7 @@ public interface Api {
 
     @POST("/api/v1/auth")
     @FormUrlEncoded
-    Observable<VerifyPojo> insertCode(@Field("mobile") String number , @Field("code") String code);
+    Observable<VerifyPojo> insertCode(@Field("mobile") String number, @Field("code") String code);
 
     @GET("/api/v1/posts?status_id=0&radius_km=5&metadata_key=ramiagha")
     Observable<ArrayList<PostPojo>> getPosts(@Header("Authorization") String token);

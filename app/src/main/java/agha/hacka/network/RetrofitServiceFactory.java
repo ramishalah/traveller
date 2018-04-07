@@ -1,5 +1,7 @@
 package agha.hacka.network;
+
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -8,7 +10,7 @@ public class RetrofitServiceFactory {
     String ENDPOINT = "https://elmhackhub.com";
 
     // returning api
-    public Api buildApiService () {
+    public Api buildApiService() {
         return buildRetrofit().create(Api.class);
     }
 

@@ -108,8 +108,6 @@ public class UserProfile extends AppCompatActivity implements UserProfileView {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//               String email = emailText.getText().toString();
-//               String fullName = fullNameText.getText().toString();
                 String token = "bearer " + PreferenceManager.getDefaultSharedPreferences(UserProfile.this).getString("TOKEN", "DEFAULT");
                 String userId = PreferenceManager.getDefaultSharedPreferences(UserProfile.this).getString("USER_ID", "DEFAULT");
 

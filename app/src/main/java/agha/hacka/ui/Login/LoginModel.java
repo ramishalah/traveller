@@ -4,7 +4,6 @@ import java.util.List;
 
 import agha.hacka.network.Api;
 import agha.hacka.network.RetrofitServiceFactory;
-import agha.hacka.pogo.FacultyResponse;
 import agha.hacka.ui.Login.LoginPOJO.LoginPojo;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

@@ -52,15 +52,12 @@ public class AddPost extends AppCompatActivity {
     @BindView(R.id.spinner)
     MaterialSpinner spinner;
 
-//    @BindView(R.id.location)
-//    ImageButton locationButton;
-
     private double lat;
     private double lng;
 
     private Uri selectedImage;
     private Bitmap photo;
-//    private Intent locationIntent;
+    //    private Intent locationIntent;
     private String itemText = "Default";
 
     @Override
@@ -80,7 +77,7 @@ public class AddPost extends AppCompatActivity {
 
         // Adding a listener
         spinner.setOnItemSelectedListener((view, position, id, item) -> {
-            itemText = (String)item;
+            itemText = (String) item;
         });
 
         // Assigning the listeners
@@ -101,11 +98,11 @@ public class AddPost extends AppCompatActivity {
 
         postButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, PostLocation.class);
-            if(selectedImage != null) {
+            if (selectedImage != null) {
                 intent.putExtra("SELECTED_IMAGE_URI", selectedImage.toString());
             }
 
-            if(photo != null) {
+            if (photo != null) {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
@@ -113,19 +110,19 @@ public class AddPost extends AppCompatActivity {
             }
             String descriptionText = description.getText().toString();
 
-            if(descriptionText != null) {
+            if (descriptionText != null) {
                 // Adding the description
                 intent.putExtra("DESCRIPTION", description.getText().toString());
             }
 
 
             String titleText = title.getText().toString();
-            if(titleText != null) {
+            if (titleText != null) {
                 // Adding the title
-                intent.putExtra("TITLE",titleText);
+                intent.putExtra("TITLE", titleText);
             }
 
-            if(itemText != null) {
+            if (itemText != null) {
                 intent.putExtra("CHOICE", itemText);
             }
             startActivity(intent);
@@ -141,15 +138,13 @@ public class AddPost extends AppCompatActivity {
                     photo = (Bitmap) imageReturnedIntent.getExtras().get("data");
                     coverImage.setImageBitmap(photo);
                     Log.d(TAG, "onActivityResult: the image is: " + photo);
-//                    Uri selectedImage = imageReturnedIntent.getData();
-//                    Log.d(TAG, "onActivityResult: The takenImage URI: " + selectedImage);
                 }
                 break;
             case 1:
                 if (resultCode == RESULT_OK) {
                     selectedImage = imageReturnedIntent.getData();
                     Bitmap bitMapPhoto = null;
-                    try{
+                    try {
                         bitMapPhoto = getBitmapFromUri(imageReturnedIntent.getData());
                     } catch (IOException e) {
                         Log.d(TAG, "onActivityResult: Error in converting the uri to bitmap");
@@ -157,12 +152,8 @@ public class AddPost extends AppCompatActivity {
 
                     coverImage.setImageBitmap(bitMapPhoto);
                     Log.d(TAG, "onActivityResult: The selectedImage URI: " + selectedImage);
-//                    imageview.setImageURI(selectedImage);
                 }
                 break;
-//            case 2:
-//                lat = getIntent().getExtras().getDouble("LAT_LOCATION");
-//                lng = getIntent().getExtras().getDouble("LNG_LOCATION");
 
         }
     }
@@ -176,17 +167,5 @@ public class AddPost extends AppCompatActivity {
         return image;
     }
 
-//    private Bitmap convertImageViewToBitmap(ImageView v) {
-//        Bitmap bm = Ion.with(v).getBitmap();
-//        return bm;
-//    }
-//
-//    private void put() {
-//        // put bitmap
-//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//        convertImageViewToBitmap(image).compress(Bitmap.CompressFormat.JPEG, 50, stream);
-//        byte[] byteArray = stream.toByteArray();
-//        locationIntent.putExtra("image", byteArray);
-//    }
 
 }

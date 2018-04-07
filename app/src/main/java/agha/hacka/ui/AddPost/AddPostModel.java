@@ -5,7 +5,6 @@ import java.util.List;
 
 import agha.hacka.network.Api;
 import agha.hacka.network.RetrofitServiceFactory;
-import agha.hacka.pogo.FacultyResponse;
 import agha.hacka.ui.AddPost.AddPostPojo.AddPostRequest;
 import agha.hacka.ui.AddPost.AddPostPojo.AddPostResponse;
 import agha.hacka.ui.AddPost.AddPostPojo.PutImageResponse;

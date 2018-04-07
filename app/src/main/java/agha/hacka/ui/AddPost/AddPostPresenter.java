@@ -17,7 +17,8 @@ public class AddPostPresenter {
         mAddPostModel = new AddPostModel();
         //
     }
-    public void addPost (AddPostRequest addPostRequest, String token) {
+
+    public void addPost(AddPostRequest addPostRequest, String token) {
         // calling the request and then responsing with call back functions.
         mAddPostModel.addPost(token, addPostRequest)
                 .subscribe(
@@ -33,7 +34,7 @@ public class AddPostPresenter {
                 );
     }
 
-    public void putImage (String token, String postId, MultipartBody.Part file) {
+    public void putImage(String token, String postId, MultipartBody.Part file) {
         // calling the request and then responsing with call back functions.
         mAddPostModel.putImage(token, postId, file)
                 .subscribe(
