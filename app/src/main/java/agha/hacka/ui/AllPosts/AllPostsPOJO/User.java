@@ -24,6 +24,19 @@ public class User {
     @SerializedName("mobile_activated")
     @Expose
     private Boolean mobileActivated;
+    @SerializedName("url")
+    @Expose
+    private String url;
+
+    public String getUrl() {
+        if (url != null)
+            return url;
+        return "null";
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getUserId() {
         return userId;
@@ -34,7 +47,9 @@ public class User {
     }
 
     public Object getFullName() {
-        return fullName;
+        if (fullName != null)
+            return fullName;
+        return "Unknown";
     }
 
     public void setFullName(Object fullName) {
@@ -50,7 +65,9 @@ public class User {
     }
 
     public Object getEmail() {
-        return email;
+        if (email != null)
+            return email;
+        return "Unknown";
     }
 
     public void setEmail(Object email) {

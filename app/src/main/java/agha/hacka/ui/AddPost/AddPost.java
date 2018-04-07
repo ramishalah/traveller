@@ -61,7 +61,7 @@ public class AddPost extends AppCompatActivity {
     private Uri selectedImage;
     private Bitmap photo;
 //    private Intent locationIntent;
-    private String itemText = null;
+    private String itemText = "Default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

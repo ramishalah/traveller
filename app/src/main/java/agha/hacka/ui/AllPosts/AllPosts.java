@@ -104,21 +104,49 @@ public class AllPosts extends AppCompatActivity implements AllPostsView{
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.spinner, menu);
 
-        MenuItem item = menu.findItem(R.id.spinner);
-        MaterialSpinner spinner = (MaterialSpinner) MenuItemCompat.getActionView(item);
-        spinner.setItems("Default","Restaurant","Park");
-        spinner.setBackgroundColor(getResources().getColor(R.color.dark));
-        spinner.setTextColor(getResources().getColor(R.color.white));
-        spinner.setArrowColor(getResources().getColor(R.color.green));
-        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                presenter.filter(item);
-            }
-        });
+//        MenuItem item = menu.findItem(R.id.spinner);
+//        MaterialSpinner spinner = (MaterialSpinner) MenuItemCompat.getActionView(item);
+//        spinner.setItems("Default","Restaurant","Park");
+//        spinner.setBackgroundColor(getResources().getColor(R.color.grey));
+//        spinner.setTextColor(getResources().getColor(R.color.dark));
+//        spinner.setArrowColor(getResources().getColor(R.color.green));
+//        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+//
+//            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+//                presenter.filter(item);
+//            }
+//        });
 
 
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // id
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.profile :
+                Toast.makeText(this,"Profile",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.defualt :
+                presenter.filter("Default");
+                break;
+            case R.id.park :
+                presenter.filter("Park");
+                break;
+            case R.id.restaurant :
+                presenter.filter("Restaurant");
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

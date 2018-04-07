@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.ion.Ion;
+
 import org.w3c.dom.Text;
 
 import agha.hacka.R;
@@ -25,6 +27,15 @@ public class DisplayPost extends AppCompatActivity {
     @BindView(R.id.title)
     TextView title ;
 
+    @BindView(R.id.profile)
+    ImageView profile ;
+
+    @BindView(R.id.name)
+    TextView name ;
+
+    @BindView(R.id.email)
+    TextView email;
+
     @BindView(R.id.description)
     TextView description ;
 
@@ -40,6 +51,14 @@ public class DisplayPost extends AppCompatActivity {
         date.setText(intent.getStringExtra("date"));
         title.setText(intent.getStringExtra("title"));
         description.setText(intent.getStringExtra("description"));
+        name.setText(intent.getStringExtra("name"));
+        email.setText(intent.getStringExtra("email"));
+        // put image
+        if (!intent.getStringExtra("url").equals("null"))
+            Ion.with(this)
+                    .load(intent.getStringExtra("url"))
+                    .withBitmap()
+                    .intoImageView(profile);
         // extract image
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);

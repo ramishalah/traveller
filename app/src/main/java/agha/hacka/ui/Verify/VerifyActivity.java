@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import agha.hacka.R;
+import agha.hacka.ui.AllPosts.AllPosts;
 import agha.hacka.ui.Verify.VerifyPOJO.VerifyPojo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,10 +43,10 @@ public class VerifyActivity extends AppCompatActivity implements VerifyView{
     public void onSuccess(VerifyPojo obj) {
         Log.e("LOGIN STATUS", obj.getAccessToken().toString().trim());
         PreferenceManager.getDefaultSharedPreferences(this).edit().putString("TOKEN", obj.getAccessToken().toString().trim()).apply();
-        //Log.e("LOGIN STATUS", obj.getAccessToken().toString().trim());
-        /*Intent i = new Intent(this, VerifyActivity.class);
-        i.putExtra("TOKEN",number.getText().toString().trim());
-        startActivity(i);*/
+        Toast.makeText(this,"User Has Been Authorized Successfuly",Toast.LENGTH_SHORT).show();
+
+        Intent i = new Intent(this, AllPosts.class);
+        startActivity(i);
     }
 
     @Override

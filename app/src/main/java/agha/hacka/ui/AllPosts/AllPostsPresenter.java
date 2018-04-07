@@ -41,14 +41,24 @@ public class AllPostsPresenter {
         else if (item.equals("Park")){
             ArrayList<PostPojo> copy = new ArrayList<>();
             for (PostPojo obj : list){
-                if (obj.getMetadata().getChoice().equals("park"))
+                if (obj.getMetadata().getChoice() != null) {
+                    if (obj.getMetadata().getChoice().equals("Park"))
+                        copy.add(obj);
+                }
+                else {
                     copy.add(obj);
+                }
             } mView.onSuccess(copy);
         } else {
             ArrayList<PostPojo> copy = new ArrayList<>();
             for (PostPojo obj : list){
-                if (obj.getMetadata().getChoice().equals("res"))
+                if (obj.getMetadata().getChoice() != null) {
+                    if (obj.getMetadata().getChoice().equals("Restaurant"))
+                        copy.add(obj);
+                }
+                else {
                     copy.add(obj);
+                }
             } mView.onSuccess(copy);
         }
     }

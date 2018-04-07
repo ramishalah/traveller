@@ -54,6 +54,7 @@
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:hint="xxxx"
+            android:paddingRight="10dp"
             android:textColorHint="@color/dark"
             />
 

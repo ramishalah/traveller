@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import agha.hacka.R;
 import agha.hacka.ui.AllPosts.AllPostsPOJO.PostPojo;
 import agha.hacka.ui.DisplayPost.DisplayPost;
+import agha.hacka.ui.Map.MapsActivity;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -86,6 +87,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     i.putExtra("title",title.getText().toString().trim());
                     i.putExtra("date",date.getText().toString().trim());
                     i.putExtra("description",list.get((int)title.getTag()).getDescription().toString());
+                    i.putExtra("url",list.get((int)title.getTag()).getUser().getUrl().toString());
+                    i.putExtra("name",list.get((int)title.getTag()).getUser().getFullName().toString());
+                    i.putExtra("email",list.get((int)title.getTag()).getUser().getEmail().toString());
                     put();
                     context.startActivity(i);
                 }
@@ -94,7 +98,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             location.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.e("location","clicked");
+                    double LOG = list.get((int)title.getTag()).getLongitude();
+                    double LAT = list.get((int)title.getTag()).getLatitude();
+                    Intent i = new Intent(context, MapsActivity.class);
+                    i.putExtra("LNG",LOG);
+                    i.putExtra("LAT",LAT);
+                    context.startActivity(i);
                 }
             });
 

@@ -12,6 +12,9 @@
 
     </style>
 
-
+    <style name="MyDarkToolbarStyle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/dark</item>
+    </style>
 
 </resources>

@@ -7,9 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -33,6 +35,7 @@ import agha.hacka.ui.AddPost.AddPostPojo.AddPostRequest;
 import agha.hacka.ui.AddPost.AddPostPojo.AddPostResponse;
 import agha.hacka.ui.AddPost.AddPostPojo.Metadata;
 import agha.hacka.ui.AddPost.AddPostPojo.PutImageResponse;
+import agha.hacka.ui.AllPosts.AllPosts;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.MediaType;
@@ -45,22 +48,29 @@ public class PostLocation extends FragmentActivity implements OnMapReadyCallback
     @BindView(R.id.saveButton)
     Button saveButton;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     private GoogleMap mMap;
     private LatLng locationSpecified;
     private AddPostPresenter mAddPostPresenter;
-    private String token = "bearer 71916f764939161c869a5b46945216543cec65af180dd7ef911c1e2ba02d63a6";
-
-
+    private String token ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_location);
         ButterKnife.bind(this);
+        // toolbar
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setTitle("Add Location");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.postMap);
         mapFragment.getMapAsync(this);
+
+        //add token
+        token = getToken();
 
         // Initializing the presenter
         mAddPostPresenter = new AddPostPresenter(this);
@@ -86,12 +96,9 @@ public class PostLocation extends FragmentActivity implements OnMapReadyCallback
                 String metaDataKey = "ramiagha";
                 String choice = getIntent().getExtras().getString("CHOICE");
 
-
-
                 Metadata metadata = new Metadata();
                 metadata.setTitle(title);
                 metadata.setChoice(choice);
-
 
                 AddPostRequest addPostRequest = new AddPostRequest();
                 addPostRequest.setLatitude(lat);
@@ -101,11 +108,17 @@ public class PostLocation extends FragmentActivity implements OnMapReadyCallback
                 addPostRequest.setMetadataKey(metaDataKey);
 
                 mAddPostPresenter.addPost(addPostRequest, token);
+
+                Intent i = new Intent(this, AllPosts.class);
+                startActivity(i);
             }
 
         });
     }
 
+    private String getToken(){
+        return "bearer " + PreferenceManager.getDefaultSharedPreferences(this).getString("TOKEN","DEFAULT");
+    }
 
     /**
      * Manipulates the map once available.

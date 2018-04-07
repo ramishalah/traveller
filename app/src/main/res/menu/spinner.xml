@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--<item-->
+        <!--android:id="@+id/spinner"-->
+        <!--android:title="ActionBar Spinner"-->
+        <!--app:actionViewClass="com.jaredrummler.materialspinner.MaterialSpinner"-->
+        <!--android:background="@color/white"-->
+        <!--app:showAsAction="always" />-->
+
     <item
-        android:id="@+id/spinner"
-        android:title="ActionBar Spinner"
-        app:actionViewClass="com.jaredrummler.materialspinner.MaterialSpinner"
-        android:background="@color/white"
-        app:showAsAction="always" />
+        android:id="@+id/profile"
+        android:title="profile"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_profile"/>
+
+    <item
+        android:id="@+id/defualt"
+        app:showAsAction="never"
+        android:title="Default"></item>
+
+    <item
+        android:id="@+id/park"
+        app:showAsAction="never"
+        android:title="Park"></item>
+
+    <item
+        android:id="@+id/restaurant"
+        app:showAsAction="never"
+        android:title="Restaurant"></item>
+
 </menu>

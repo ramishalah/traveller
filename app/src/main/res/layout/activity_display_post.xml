@@ -20,15 +20,61 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop" />
+                android:src="@drawable/bg_small"
+                android:scaleType="centerCrop"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/info"
+                android:background="@color/dark"
+                android:elevation="10dp"
+                android:layout_below="@id/image">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/profile"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/ic_profile"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown"
+                    android:textColor="@color/grey"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/profile"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/name"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown"
+                    android:textColor="@color/grey"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@id/profile"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/email"/>
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@id/image"
-                android:layout_marginRight="15dp"
+                android:layout_alignParentEnd="false"
+                android:layout_below="@id/info"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:text="Jan 11,2018"
                 android:textColor="@color/white"
@@ -38,9 +84,9 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentEnd="false"
                 android:layout_below="@id/date"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:text="إنطلاق بطولة معالي مدير الجامعة"
                 android:textColor="@color/white"
@@ -51,7 +97,7 @@
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/title"
+                android:layout_marginLeft="15dp"
                 android:layout_below="@+id/title"
                 android:layout_marginTop="14dp"
                 android:text="إنطلاق بطولة معالي مدير الجامعة"
