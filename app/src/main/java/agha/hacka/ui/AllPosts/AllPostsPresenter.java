@@ -1,22 +1,22 @@
-package agha.hacka.ui.Verify;
+package agha.hacka.ui.AllPosts;
 
 import android.content.Context;
 
-public class VerifyPresenter {
+public class AllPostsPresenter {
 
-    //private Context context ;
-    private VerifyView mView ;
-    private VerifyModel mModel ;
+    private Context context ;
+    private AllPostsView mView ;
+    private AllPostsModel mModel ;
 
-    public VerifyPresenter(Context context , VerifyView mView){
-        //this.context = context;
-        this.mView = mView;
-        mModel = new VerifyModel();
+    public AllPostsPresenter(Context c, AllPostsView view){
+        mView = view ;
+        context = c ;
+        mModel = new AllPostsModel();
     }
 
-    public void insertCode(String number, String code) {
+    public void getPosts(String token){
         // calling the request and then responsing with call back functions.
-        mModel.insertNumber(number, code)
+        mModel.getPosts(token)
                 .subscribe(
                         successResponse -> {
                             mView.onSuccess(successResponse);
@@ -27,7 +27,5 @@ public class VerifyPresenter {
                         }
                 );
     }
-
-
 
 }

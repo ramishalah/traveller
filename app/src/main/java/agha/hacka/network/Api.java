@@ -1,11 +1,13 @@
 package agha.hacka.network;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import agha.hacka.pogo.FacultyResponse;
 import agha.hacka.ui.AddPost.AddPostPojo.AddPostRequest;
 import agha.hacka.ui.AddPost.AddPostPojo.AddPostResponse;
 import agha.hacka.ui.AddPost.AddPostPojo.PutImageResponse;
+import agha.hacka.ui.AllPosts.AllPostsPOJO.PostPojo;
 import agha.hacka.ui.Login.LoginPOJO.LoginPojo;
 import agha.hacka.ui.Verify.VerifyPOJO.VerifyPojo;
 import io.reactivex.Observable;
@@ -15,6 +17,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -26,6 +29,7 @@ import retrofit2.http.Path;
 // look at the gradle file and look at the manifest for the permission
 // Also, look at how the mvp works exactly
 
+//hello
 // In this interface you add the requests
 public interface Api {
 
@@ -41,6 +45,10 @@ public interface Api {
     @POST("/api/v1/auth")
     @FormUrlEncoded
     Observable<VerifyPojo> insertCode(@Field("mobile") String number , @Field("code") String code);
+
+    @GET("/api/v1/posts?status_id=0&radius_km=5&metadata_key=ramiagha")
+    Observable<ArrayList<PostPojo>> getPosts(@Header("Authorization") String token);
+
 
     @Multipart
     @POST("uploadAttachment")
