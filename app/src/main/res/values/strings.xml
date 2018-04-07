@@ -2,7 +2,7 @@
     <string name="app_name">hacka</string>
     <string name="title_activity_maps">Map</string>
 
-    <item type="id" name="description" />
+    <item name="description" type="id" />
 
     <array name="spinner">
         <item name="">Default</item>

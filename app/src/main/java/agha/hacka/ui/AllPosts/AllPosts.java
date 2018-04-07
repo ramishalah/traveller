@@ -28,26 +28,31 @@ import java.util.ArrayList;
 import agha.hacka.R;
 import agha.hacka.ui.AddPost.AddPost;
 import agha.hacka.ui.AllPosts.AllPostsPOJO.PostPojo;
+import agha.hacka.ui.UserProfile.UserProfile;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AllPosts extends AppCompatActivity implements AllPostsView{
+public class AllPosts extends AppCompatActivity implements AllPostsView {
 
     @BindView(R.id.toolbar)
-    Toolbar toolbar ;
+    Toolbar toolbar;
 
     @BindView(R.id.rv)
-    RecyclerView rv ;
+    RecyclerView rv;
 
     @BindView(R.id.swipe)
-    SwipeRefreshLayout swipeRefreshLayout ;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @BindView(R.id.fab)
-    FloatingActionButton fab ;
+    FloatingActionButton fab;
 
-    private RecyclerViewAdapter adapter ;
-    private AllPostsPresenter presenter ;
-    private Spinner spinner ;
+    @BindView(R.id.userProfile)
+    FloatingActionButton userProfileButton;
+
+
+    private RecyclerViewAdapter adapter;
+    private AllPostsPresenter presenter;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,7 @@ public class AllPosts extends AppCompatActivity implements AllPostsView{
         setContentView(R.layout.activity_all_posts);
         ButterKnife.bind(this);
         // init presenter
-        presenter = new AllPostsPresenter(this,this);
+        presenter = new AllPostsPresenter(this, this);
         // call
         presenter.getPosts(getToken());
         // init toolbar
@@ -63,25 +68,28 @@ public class AllPosts extends AppCompatActivity implements AllPostsView{
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
         // swipe
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() { swipe(); swipeRefreshLayout.setRefreshing(false); }});
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            swipe();
+            swipeRefreshLayout.setRefreshing(false);
+        });
 
-        Log.e("token",getToken());
+        Log.e("token", getToken());
 
         // add post
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(AllPosts.this,AddPost.class);
-                startActivity(i);
-            }
+        fab.setOnClickListener(view -> {
+            Intent i = new Intent(AllPosts.this, AddPost.class);
+            startActivity(i);
+        });
+
+        userProfileButton.setOnClickListener(view -> {
+            Intent intent = new Intent(AllPosts.this, UserProfile.class);
+            startActivity(intent);
         });
     }
 
     @Override
     public void onSuccess(ArrayList<PostPojo> list) {
-        adapter = new RecyclerViewAdapter(this,list);
+        adapter = new RecyclerViewAdapter(this, list);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setHasFixedSize(true);
         rv.setAdapter(adapter);
@@ -89,14 +97,14 @@ public class AllPosts extends AppCompatActivity implements AllPostsView{
 
     @Override
     public void onFail() {
-        Toast.makeText(this,"Failed to download", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Failed to download", Toast.LENGTH_SHORT).show();
     }
 
-    public String getToken(){
-        return "bearer " + PreferenceManager.getDefaultSharedPreferences(this).getString("TOKEN","DEFAULT");
+    public String getToken() {
+        return "bearer " + PreferenceManager.getDefaultSharedPreferences(this).getString("TOKEN", "DEFAULT");
     }
 
-    public void swipe(){
+    public void swipe() {
         presenter.getPosts(getToken());
     }
 
