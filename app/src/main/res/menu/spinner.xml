@@ -4,7 +4,7 @@
     <item
         android:id="@+id/spinner"
         android:title="ActionBar Spinner"
-        app:actionViewClass="android.widget.Spinner"
-        android:background="@color/dark"
+        app:actionViewClass="com.jaredrummler.materialspinner.MaterialSpinner"
+        android:background="@color/white"
         app:showAsAction="always" />
 </menu>

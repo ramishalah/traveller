@@ -25,4 +25,5 @@ public class AllPostsModel {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+
 }

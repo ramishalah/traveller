@@ -1,6 +1,9 @@
 package agha.hacka.ui.AllPosts;
 
+import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +14,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
 
@@ -33,8 +41,12 @@ public class AllPosts extends AppCompatActivity implements AllPostsView{
     @BindView(R.id.swipe)
     SwipeRefreshLayout swipeRefreshLayout ;
 
+    @BindView(R.id.fab)
+    FloatingActionButton fab ;
+
     private RecyclerViewAdapter adapter ;
     private AllPostsPresenter presenter ;
+    private Spinner spinner ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +68,14 @@ public class AllPosts extends AppCompatActivity implements AllPostsView{
 
         Log.e("token",getToken());
 
+        // add post
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(this,AddPost.class);
+//                startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -84,13 +104,20 @@ public class AllPosts extends AppCompatActivity implements AllPostsView{
         getMenuInflater().inflate(R.menu.spinner, menu);
 
         MenuItem item = menu.findItem(R.id.spinner);
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+        MaterialSpinner spinner = (MaterialSpinner) MenuItemCompat.getActionView(item);
+        spinner.setItems("Default","Restaurant","Park");
+        spinner.setBackgroundColor(getResources().getColor(R.color.dark));
+        spinner.setTextColor(getResources().getColor(R.color.white));
+        spinner.setArrowColor(getResources().getColor(R.color.green));
+        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                presenter.filter(item);
+            }
+        });
 
-        spinner.setAdapter(adapter);
+
         return true;
     }
+
 }

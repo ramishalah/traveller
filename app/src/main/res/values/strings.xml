@@ -5,8 +5,8 @@
     <item type="id" name="description" />
 
     <array name="spinner">
-        <item name="Default"></item>
-        <item name="Restaurant">res</item>
-        <item name="Park">park</item>
+        <item name="">Default</item>
+        <item name="res">Resturant</item>
+        <item name="park">Park</item>
     </array>
 </resources>
