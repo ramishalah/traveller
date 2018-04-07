@@ -39,4 +39,16 @@
         android:layout_marginBottom="15dp"
         android:elevation="10dp"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/userProfile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:backgroundTint="@color/green"
+        android:src="@drawable/ic_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="150dp"
+        android:layout_marginBottom="15dp"
+        android:elevation="10dp"/>
+
 </RelativeLayout>

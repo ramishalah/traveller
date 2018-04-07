@@ -1,35 +1,31 @@
-
 package agha.hacka.ui.Verify.VerifyPOJO;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class UserProfileResponse {
 
     @SerializedName("user_id")
     @Expose
     private String userId;
     @SerializedName("full_name")
     @Expose
-    private Object fullName;
+    private String fullName;
     @SerializedName("mobile")
     @Expose
     private String mobile;
     @SerializedName("email")
     @Expose
-    private Object email;
+    private String email;
+    @SerializedName("url")
+    @Expose
+    private String url;
     @SerializedName("email_activated")
     @Expose
     private Boolean emailActivated;
     @SerializedName("mobile_activated")
     @Expose
     private Boolean mobileActivated;
-    @SerializedName("role")
-    @Expose
-    private Role role;
-    @SerializedName("url")
-    @Expose
-    private String url;
 
     public String getUserId() {
         return userId;
@@ -39,11 +35,11 @@ public class User {
         this.userId = userId;
     }
 
-    public Object getFullName() {
+    public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(Object fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
@@ -55,12 +51,20 @@ public class User {
         this.mobile = mobile;
     }
 
-    public Object getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Object email) {
+    public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Boolean getEmailActivated() {
@@ -79,19 +83,4 @@ public class User {
         this.mobileActivated = mobileActivated;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 }

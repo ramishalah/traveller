@@ -9,9 +9,11 @@ import agha.hacka.ui.AddPost.AddPostPojo.AddPostResponse;
 import agha.hacka.ui.AddPost.AddPostPojo.PutImageResponse;
 import agha.hacka.ui.AllPosts.AllPostsPOJO.PostPojo;
 import agha.hacka.ui.Login.LoginPOJO.LoginPojo;
+import agha.hacka.ui.Verify.VerifyPOJO.UserProfileResponse;
 import agha.hacka.ui.Verify.VerifyPOJO.VerifyPojo;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -33,10 +35,6 @@ import retrofit2.http.Query;
 //hello
 // In this interface you add the requests
 public interface Api {
-
-    @GET("faculty")
-    Observable<List<FacultyResponse>> getFaculty();
-
 
 
     @POST("/api/v1/users")
@@ -61,4 +59,13 @@ public interface Api {
     @Multipart
     @PUT("/api/v1/posts/{post_id}")
     Observable<PutImageResponse> putImage(@Header("Authorization") String token, @Path("post_id") String id, @Part MultipartBody.Part filePart);
+
+    @GET("/api/v1/users/{user_id}")
+    Observable<UserProfileResponse> getUserProfile(@Header("Authorization") String token, @Path("user_id") String userId);
+
+    @Multipart
+    @PUT("/api/v1/users/{user_id}")
+    Observable<UserProfileResponse> updateUserProfile(@Header("Authorization") String token, @Path("user_id") String userId, @Part MultipartBody.Part filePart, @Part("email") RequestBody emailPart, @Part("full_name") RequestBody fullName);
+
+
 }

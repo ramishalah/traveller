@@ -3,8 +3,7 @@ package agha.hacka.ui.Login;
 import android.content.Context;
 import android.util.Log;
 
-import agha.hacka.ui.MainPage.MainPageModel;
-import agha.hacka.ui.MainPage.MainPageView;
+
 
 
 public class LoginPresenter {

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import agha.hacka.ui.AddPost.AddPostPojo.AddPostRequest;
-import agha.hacka.ui.MainPage.MainPageModel;
-import agha.hacka.ui.MainPage.MainPageView;
 import okhttp3.MultipartBody;
 
 public class AddPostPresenter {
