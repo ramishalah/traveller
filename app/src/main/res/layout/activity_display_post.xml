@@ -48,23 +48,12 @@
                     android:textColor="@color/grey"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/profile"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/name"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Unknown"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@id/profile"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/email"/>
+
 
             </RelativeLayout>
 

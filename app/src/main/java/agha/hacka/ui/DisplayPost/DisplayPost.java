@@ -33,8 +33,6 @@ public class DisplayPost extends AppCompatActivity {
     @BindView(R.id.name)
     TextView name ;
 
-    @BindView(R.id.email)
-    TextView email;
 
     @BindView(R.id.description)
     TextView description ;
@@ -52,7 +50,6 @@ public class DisplayPost extends AppCompatActivity {
         title.setText(intent.getStringExtra("title"));
         description.setText(intent.getStringExtra("description"));
         name.setText(intent.getStringExtra("name"));
-        email.setText(intent.getStringExtra("email"));
         // put image
         if (!intent.getStringExtra("url").equals("null"))
             Ion.with(this)

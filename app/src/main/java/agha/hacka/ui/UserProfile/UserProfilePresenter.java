@@ -24,11 +24,11 @@ public class UserProfilePresenter {
         mUserProfileModel.updateUserProfile(token, userId, filePart, emailPart, fullName)
                 .subscribe(
                         successResponse -> {
-                            Log.d(TAG, "insertCode: user profile updated successfully");
+                            Log.d(TAG, "updateUserProfile: user profile updated successfully");
                             mUserProfileView.onSuccess(successResponse);
                         },
                         error -> {
-                            Log.d(TAG, "insertCode: error in updating user profile");
+                            Log.d(TAG, "updateUserProfile: error in updating user profile");
                             error.printStackTrace();
                             mUserProfileView.onFail();
                         }

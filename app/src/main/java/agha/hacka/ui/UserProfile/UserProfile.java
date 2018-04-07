@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -61,6 +62,9 @@ public class UserProfile extends AppCompatActivity implements UserProfileView {
     @BindView(R.id.gallery)
     FloatingActionButton uploadImageButton;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,9 @@ public class UserProfile extends AppCompatActivity implements UserProfileView {
         ButterKnife.bind(this);
 
         userProfilePresenter = new UserProfilePresenter(this);
+
+        toolbar.setTitle("Edit Profile");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
         // Initializing the fields
         String url = userSingleton.getUrl();
@@ -106,9 +113,17 @@ public class UserProfile extends AppCompatActivity implements UserProfileView {
                 String token = "bearer " + PreferenceManager.getDefaultSharedPreferences(UserProfile.this).getString("TOKEN", "DEFAULT");
                 String userId = PreferenceManager.getDefaultSharedPreferences(UserProfile.this).getString("USER_ID", "DEFAULT");
 
-//                MultipartBody.Part fullName = MultipartBody.Part.createFormData("email", RequestBody.create(MediaType.parse("text/plain"), emailText.getText().toString()));
-                RequestBody fullName = RequestBody.create(MediaType.parse("text/plain"), fullNameText.getText().toString());
-                RequestBody email = RequestBody.create(MediaType.parse("text/plain"), emailText.getText().toString());
+                RequestBody fullName = null;
+                if(fullNameText.getText().toString() != null) {
+                    fullName = RequestBody.create(MediaType.parse("text/plain"), fullNameText.getText().toString());
+                }
+
+
+                RequestBody email = null;
+                if(emailText.getText().toString() != null) {
+                    email = RequestBody.create(MediaType.parse("text/plain"), emailText.getText().toString());
+                }
+
                 File imageSelected = null;
 
                 if(bitMapPhoto != null) {
@@ -118,7 +133,9 @@ public class UserProfile extends AppCompatActivity implements UserProfileView {
                 if(imageSelected != null){
                     filePart = MultipartBody.Part.createFormData("file", imageSelected.getName(), RequestBody.create(MediaType.parse("image/*"), imageSelected));
 
+
                 }
+
                 // Request
                 userProfilePresenter.updateUserProfile(token, userId, filePart, email, fullName);
 
